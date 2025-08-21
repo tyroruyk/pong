@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>CYBER PONG</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="gameContainer">
+        <div id="hud">
+            <div id="score">
+                <span id="playerScore">0</span> : <span id="aiScore">0</span>
+            </div>
+            <div id="gameInfo">
+                <div id="level">Level: <span id="levelNum">1</span></div>
+                <div id="speed">Speed: <span id="speedNum">1.0x</span></div>
+            </div>
+        </div>
+        <canvas id="pongCanvas" width="800" height="500"></canvas>
+        <div id="controls" style="display:none;">
+            <button id="pauseBtn">Pause</button>
+            <button id="muteSoundBtn">Mute</button>
+        </div>
+        <div id="countdownOverlay"></div>
+    </div>
+
+    <div id="difficulty">
+        Difficulty:
+        <select id="difficultySelect">
+            <option value="easy">Easy</option>
+            <option value="medium" selected>Medium</option>
+            <option value="hard">Hard</option>
+            <option value="insane">Insane</option>
+        </select>
+    </div>
+
+    <div class="powerup-indicator" id="powerupIndicator"></div>
+
+    <div id="overlay">
+        <div id="startScreen">
+            <div style="font-size: 2.5em; font-weight: 900; margin-bottom: 20px; text-shadow: 0 0 30px #0ff;">
+                CYBER PONG
+            </div>
+            <div style="font-size: 1em; margin-bottom: 20px; color: #888; max-width: 500px; line-height: 1.5;">
+                Experience a futuristic twist on classic Pong with electrifying power-ups, dazzling particle effects,
+                and fast-paced action.<br /><br />
+                Move with mouse/touch • Collect power-ups • First to 10 points wins
+            </div>
+            <button id="startBtn">Start Game</button>
+            <div id="creditMenu" style="text-align:center; margin: 30px 0 10px 0; font-size: 1em; color: #aaa;">
+                Open source on
+                <a href="https://github.com/tyroruyk/pong" target="_blank"
+                    style="color:#0ff; text-decoration:underline;">
+                    GitHub
+                </a>
+                &mdash; <span style="color:#0ff;">⭐</span> Star us!
+            </div>
+        </div>
+        <div id="gameOverScreen" style="display:none;">
+            <div id="gameOverText" style="text-align: center; margin-bottom: 20px;"></div>
+            <button id="restartBtn">Play Again</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+    <div id="credit" style="text-align:center; margin: 30px 0 10px 0; font-size: 1em; color: #aaa;">
+        Open source on
+        <a href="https://github.com/tyroruyk/pong" target="_blank"
+            style="color:#0ff; text-decoration:underline;">
+            GitHub
+        </a>
+        &mdash; <span style="color:#0ff;">⭐</span> Star us!
+    </div>
+</body>
+
+</html>
