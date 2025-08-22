@@ -328,6 +328,21 @@ canvas.addEventListener('touchmove', e => {
   playerY = Math.max(0, Math.min(playerY, canvas.height - PADDLE_HEIGHT));
 }, {passive: false});
 
+// Keyboard controls (ArrowUp/ArrowDown and W/S)
+document.addEventListener('keydown', (e) => {
+  if (!gameRunning) return;
+  const k = e.key;
+  if (k === 'ArrowUp' || k === 'ArrowDown' || k.toLowerCase() === 'w' || k.toLowerCase() === 's' || k.toLowerCase() === 'a' || k.toLowerCase() === 'd') {
+    keys[k] = true;
+    e.preventDefault();
+  }
+});
+
+document.addEventListener('keyup', (e) => {
+  const k = e.key;
+  if (keys[k]) keys[k] = false;
+});
+
 // Button events
 pauseBtn.addEventListener("click", () => {
   if (!gameRunning) return;
@@ -457,6 +472,21 @@ function draw() {
 
 function update() {
   if (gamePaused) return;
+
+  // Keyboard movement handling
+  if (gameRunning && !gamePaused) {
+    const upPressed = keys['ArrowUp'] || keys['w'] || keys['W'] || keys['a'] || keys['A'];
+    const downPressed = keys['ArrowDown'] || keys['s'] || keys['S'] || keys['d'] || keys['D'];
+    if (upPressed || downPressed) {
+      const base = Math.max(4, canvas.height * 0.02);
+      const speedFactor = playerPowerups.fastPaddle > 0 ? 1.3 : 1.0;
+      const moveAmount = base * speedFactor;
+      if (upPressed) playerY -= moveAmount;
+      if (downPressed) playerY += moveAmount;
+      const paddleH = playerPowerups.bigPaddle > 0 ? PADDLE_HEIGHT * 1.5 : PADDLE_HEIGHT;
+      playerY = Math.max(0, Math.min(playerY, canvas.height - paddleH));
+    }
+  }
 
   // Update power-up timers
   Object.keys(playerPowerups).forEach(key => {
