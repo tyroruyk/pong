@@ -19,7 +19,7 @@ const countdownOverlay = document.getElementById('countdownOverlay');
 
 // Game state
 let PADDLE_WIDTH, PADDLE_HEIGHT, PADDLE_MARGIN, BALL_SIZE;
-let BASE_BALL_SPEED = 6;
+let BASE_BALL_SPEED = (isMobileDevice()) ? 2.5 : 6;
 let BASE_AI_SPEED = 4;
 const WINNING_SCORE = 10;
 let currentLevel = 1;
@@ -624,6 +624,7 @@ function getDifficultyMultiplier() {
 }
 
 function addParticles(x, y, color) {
+  if (isMobileDevice()) return;
   for (let i = 0; i < 15; i++) {
     particles.push(new Particle(
       x + (Math.random() - 0.5) * 20,
@@ -634,6 +635,10 @@ function addParticles(x, y, color) {
       30 + Math.random() * 20
     ));
   }
+}
+
+function isMobileDevice() {
+  return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 }
 
 function endGame(message) {
@@ -685,10 +690,10 @@ function gameLoop() {
     ctx.font = '48px Orbitron';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText('PAUSED', canvas.width/2, canvas.height/2);
+    ctx.fillText('PAUSED', canvas.width/2, canvas.height/2 - 10);
 
     ctx.font = '16px Orbitron';
-    ctx.fillText('Click Resume to continue', canvas.width/2, canvas.height/2 + 60);
+    ctx.fillText('Click Resume to continue', canvas.width/2, canvas.height/2 + 45);
   }
 
   requestAnimationFrame(gameLoop);
