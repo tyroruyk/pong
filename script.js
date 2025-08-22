@@ -247,17 +247,11 @@ function resetBall(direction) {
   }
 
   // Show countdown before serving
-  if (playerScore == 0 && aiScore == 0) {
-    showCountdown(() => {
-      ball.vx = speed * direction;
-      ball.vy = speed * (Math.random() * 2 - 1) * 0.5;
-    });
-  } else {
-    showCountdown(() => {
-      ball.vx = speed * direction;
-      ball.vy = speed * (Math.random() * 2 - 1) * 0.5;
-    }, true);
-  }
+  const onlyGo = !(playerScore === 0 && aiScore === 0);
+  showCountdown(() => {
+    ball.vx = speed * direction;
+    ball.vy = speed * (Math.random() * 2 - 1) * 0.5;
+  }, onlyGo);
 }
 
 function spawnPowerUp() {
