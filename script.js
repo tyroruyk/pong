@@ -19,7 +19,7 @@ const countdownOverlay = document.getElementById('countdownOverlay');
 
 // Game state
 let PADDLE_WIDTH, PADDLE_HEIGHT, PADDLE_MARGIN, BALL_SIZE;
-let BASE_BALL_SPEED = (isMobileDevice()) ? 2.5 : 6;
+let BASE_BALL_SPEED = (isMobileDevice()) ? 3 : 6;
 let BASE_AI_SPEED = 4;
 const WINNING_SCORE = 10;
 let currentLevel = 1;
