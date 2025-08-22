@@ -582,7 +582,7 @@ function update() {
         // Level progression
         if (playerScore % 3 === 0) {
           currentLevel++;
-          speedMultiplier += 0.2;
+          speedMultiplier += 0.05;
         }
 
         resetBall(-1);
