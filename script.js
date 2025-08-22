@@ -665,7 +665,13 @@ function endGame(message) {
   stats += `Final Speed: ${speedMultiplier.toFixed(1)}x\n`;
   stats += `Difficulty: ${difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}`;
 
-  gameOverText.innerHTML = message + '<br><br>' + stats.replace(/\n/g, '<br>');
+  gameOverText.innerHTML =
+    '<div style="font-size:32px;font-family:Orbitron;text-align:center;color:#0ff;margin-bottom:16px;">Game Over</div>' +
+    message + '<br><br>' + stats.replace(/\n/g, '<br>') +
+    '<br><br><div style="text-align:center; font-size:14px; color:#aaa;">Open source on ' +
+    '<a href="https://github.com/tyroruyk/pong" target="_blank" rel="noopener noreferrer" aria-label="CYBER PONG on GitHub (footer)" style="color:#0ff;text-decoration:underline;">GitHub</a>' +
+    ' &mdash; <span style="color:#0ff;">&#9733;</span> Star us!</div>';
+  startScreen.style.display = "none";
   gameOverScreen.style.display = "flex";
   overlay.style.display = "flex";
 
