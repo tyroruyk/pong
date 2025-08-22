@@ -212,9 +212,9 @@ function updateUI() {
   speedNumEl.textContent = speedMultiplier.toFixed(1) + 'x';
 }
 
-function showCountdown(callback) {
+function showCountdown(callback, onlyGo = false) {
   countdownOverlay.style.display = "flex";
-  let steps = ["3", "2", "1", "Go!"];
+  let steps = onlyGo ? ["Go!"] : ["3", "2", "1", "Go!"];
   let i = 0;
   function nextStep() {
     countdownOverlay.textContent = steps[i];
@@ -253,8 +253,10 @@ function resetBall(direction) {
       ball.vy = speed * (Math.random() * 2 - 1) * 0.5;
     });
   } else {
-    ball.vx = speed * direction;
-    ball.vy = speed * (Math.random() * 2 - 1) * 0.5;
+    showCountdown(() => {
+      ball.vx = speed * direction;
+      ball.vy = speed * (Math.random() * 2 - 1) * 0.5;
+    }, true);
   }
 }
 
